@@ -12,7 +12,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $customers = Customer::get();
+
+        return view('customer.index',compact('customers'));
     }
 
     /**
@@ -28,7 +30,6 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
             'name' => 'required',
             'mobile' => 'required',
@@ -41,6 +42,7 @@ class CustomerController extends Controller
         $customer->latitude = $request->latitude;
         $customer->longitude = $request->longitude;
         $customer->save();
+        return redirect()->route('customer.index')->with('message', 'Add successfully.');
     }
 
     /**
@@ -56,7 +58,9 @@ class CustomerController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $customer = Customer::findOrFail($id);
+
+        return view('customer.edit',compact('customer'));
     }
 
     /**
@@ -64,7 +68,19 @@ class CustomerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'mobile' => 'required',
+            'address' => 'required',
+        ]);
+        $customer =Customer::findOrFail($id);
+        $customer->name = $request->name;
+        $customer->mobile = $request->mobile;
+        $customer->address = $request->address;
+        $customer->latitude = $request->latitude;
+        $customer->longitude = $request->longitude;
+        $customer->update();
+        return redirect()->route('customer.index')->with('message', 'Update successfully.');
     }
 
     /**

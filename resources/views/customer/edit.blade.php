@@ -11,9 +11,10 @@
 </head>
 <body>
     <div class="container">
-        <h1>Create</h1>
-        <form action="{{ route('customer.store') }}" enctype="multipart/form-data" method="POST">
+        <h1>Edit</h1>
+        <form action="{{ route('customer.update',$customer->id) }}" enctype="multipart/form-data" method="POST">
             @csrf
+            @method('put')
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -21,7 +22,7 @@
                             <div class="row">
                                 <div class="form-group col-12  mb-2">
                                     <label for="name"><b>Name</b><span class="text-danger">*</span></label>
-                                    <input type="text" name="name" id="name"class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" placeholder="Enter Name">
+                                    <input type="text" name="name" id="name"class="form-control @error('name') is-invalid @enderror" value="{{$customer->name}}" placeholder="Enter Name">
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -30,7 +31,7 @@
                                 </div>
                                 <div class="form-group col-12  mb-2">
                                     <label for="mobile"><b>Mobile</b><span class="text-danger">*</span></label>
-                                    <input type="number" name="mobile" id="mobile"class="form-control @error('mobile') is-invalid @enderror" value="{{ old('mobile') }}" placeholder="Enter mobile">
+                                    <input type="number" name="mobile" id="mobile"class="form-control @error('mobile') is-invalid @enderror" value="{{ $customer->mobile}}" placeholder="Enter mobile">
                                     @error('mobile')
                                     <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -39,7 +40,7 @@
                                 </div>
                                 <div class="form-group col-12  mb-2">
                                     <label for="address"><b>Address</b><span class="text-danger">*</span></label>
-                                    <input type="text" name="address" id="address"class="form-control @error('address') is-invalid @enderror" value="{{ old('address') }}" placeholder="Enter Address">
+                                    <input type="text" name="address" id="address"class="form-control @error('address') is-invalid @enderror" value="{{ $customer->address}}" placeholder="Enter Address">
                                     @error('address')
                                     <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -48,7 +49,7 @@
                                 </div>
                                 <div class="form-group col-6  mb-2">
                                     <label for="lattitude"><b>Lattitude</b></label>
-                                    <input id="lat" type="text" name="latitude" id="lattitude"class="form-control @error('lattitude') is-invalid @enderror" value="{{ old('lattitude') }}" placeholder="Enter lattitude">
+                                    <input id="lat" type="text" name="latitude" class="form-control @error('lattitude') is-invalid @enderror" value="{{$customer->latitude}}" placeholder="Enter lattitude">
                                     @error('lattitude')
                                     <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -57,7 +58,7 @@
                                 </div>
                                 <div class="form-group col-6  mb-2">
                                     <label for="longitude"><b>Longitude</b></label>
-                                    <input id="lng" type="text" name="longitude" id="longitude"class="form-control @error('longitude') is-invalid @enderror" value="{{ old('longitude') }}" placeholder="Enter longitude">
+                                    <input id="lng" type="text" name="longitude" class="form-control @error('longitude') is-invalid @enderror" value="{{ $customer->longitude }}" placeholder="Enter longitude">
                                     @error('longitude')
                                     <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -70,13 +71,16 @@
                                 <script>
                                     let map;
                                     function initMap() {
+                                        var latt =Number ($('#lat').val());
+                                        var lngg =Number ($('#lng').val());
+
                                         map = new google.maps.Map(document.getElementById("map"), {
-                                            center: { lat: 23.80805140332605, lng: 90.4175778591866 },
+                                            center: { lat: latt, lng: lngg },
                                             zoom: 8,
                                             scrollwheel: true,
                                         });
 
-                                        const uluru = { lat: 23.80805140332605, lng: 90.4175778591866 };
+                                        const uluru = { lat: latt, lng: lngg };
                                         let marker = new google.maps.Marker({
                                             position: uluru,
                                             map: map,
