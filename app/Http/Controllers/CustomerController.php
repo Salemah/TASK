@@ -50,7 +50,8 @@ class CustomerController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $customers = Customer::get();
+        return view('customer.show',compact('customers'));
     }
 
     /**

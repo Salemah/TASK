@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,7 +31,7 @@
                 <tbody>
                     @if (count($customers) > 0)
                         @foreach ($customers as $key => $customer)
-                            <tr onclick="initMap({{$customer->latitude}},{{$customer->longitude}})">
+                            <tr onclick="initMap({{ $customer->latitude }},{{ $customer->longitude }})">
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $customer->name }}</td>
                                 <td>{{ $customer->mobile }}</td>
@@ -40,7 +39,8 @@
                                 <td>{{ $customer->latitude }}</td>
                                 <td>{{ $customer->longitude }}</td>
                                 <td>
-                                    <a href="{{route('customer.edit',$customer->id)}}" type="button" class="btn btn-sm btn-primary">Edit</a>
+                                    <a href="{{ route('customer.edit', $customer->id) }}" type="button"
+                                        class="btn btn-sm btn-primary">Edit</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -48,60 +48,37 @@
                         <tr>
                             <td colspan="7">No Customer</td>
                         </tr>
-
-
-
-
                     @endif
-
-
                 </tbody>
             </table>
             <div id="map" style="height:400px; width: 800px;" class="my-3"></div>
+            <div class="">
+                <h1> Click row to view live location</h1>
+            </div>
         </div>
 
     </div>
     <script>
         let map;
 
-        function initMap(lat,long) {
+        function initMap(lat, long) {
             var coord = {
                 lat: lat,
                 lng: long
             };
             map = new google.maps.Map(document.getElementById("map"), {
-                                            center: coord,
-                                            zoom: 8,
-                                            scrollwheel: true,
-                                        });
-            // map = new google.maps.Map(document.getElementById("map"), {
-
-            //     zoom: 10,
-            //     center:coord,
-            // });
-
-            //const uluru = { lat: 23.80805140332605, lng: 90.4175778591866 };
+                center: coord,
+                zoom: 8,
+                scrollwheel: true,
+            });
             let marker = new google.maps.Marker({
                 position: coord,
                 map: map,
                 draggable: true
             });
 
-            // google.maps.event.addListener(marker,'position_changed',
-            //     function (){
-            //         let lat = marker.position.lat()
-            //         let lng = marker.position.lng()
-            //         $('#lat').val(lat)
-            //         $('#lng').val(lng)
-            //     })
-
-            // google.maps.event.addListener(map,'click',
-            // function (event){
-            //     pos = event.latLng
-            //     marker.setPosition(pos)
-            // })
         }
-        initMap( 23.80805140332605,90.4175778591866);
+        initMap(23.80805140332605, 90.4175778591866);
     </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"
@@ -115,3 +92,6 @@
 </body>
 
 </html>
+{{-- // var arr = window.myArray=@json($customers);
+//  var app = {{ Js::from($customers) }};
+//  console.log((app[2].latitude) ); --}}

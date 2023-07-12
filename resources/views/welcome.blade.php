@@ -154,6 +154,7 @@
 
         <a href="{{route('customer.create')}}" type="button" class="btn btn-primary">Create</a>
         <a href="{{route('customer.index')}}" type="button" class="btn btn-primary">Customer List</a>
+        <a href="{{route('customer.show',1)}}" type="button" class="btn btn-primary">Show</a>
    </div>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
