@@ -15,6 +15,7 @@
 <body>
     <div class="container">
         <h1>Customer List</h1>
+        <a href="{{route('customer.show',1)}}" type="button" class="btn btn-primary">All Customer In Map</a>
         <div class="">
             <table class="table">
                 <thead>
