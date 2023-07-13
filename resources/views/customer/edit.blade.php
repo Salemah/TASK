@@ -12,6 +12,7 @@
 <body>
     <div class="container">
         <h1>Edit</h1>
+        <a href="{{route('customer.index')}}" type="button" class="btn btn-primary">Back</a>
         <form action="{{ route('customer.update',$customer->id) }}" enctype="multipart/form-data" method="POST">
             @csrf
             @method('put')

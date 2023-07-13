@@ -16,6 +16,7 @@
 
 <body>
     <div id="map"></div>
+    <a href="{{route('customer.index')}}" type="button" class="btn btn-primary">Back</a>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function() {
