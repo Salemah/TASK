@@ -1,22 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap" type="text/javascript"></script>
+@extends('master')
+@section('title', 'Customer Show')
+@push('css')
     <style>
         #map {
             height: 400px;
         }
     </style>
-</head>
-
-<body>
+@endpush
+@section('content')
     <div id="map"></div>
-    <a href="{{route('customer.index')}}" type="button" class="btn btn-primary">Back</a>
+    <a href="{{ route('customer.index') }}" type="button" class="btn btn-primary my-2">Back</a>
+
+@endsection
+@push('script')
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function() {
@@ -37,6 +33,4 @@
             }
         });
     </script>
-</body>
-
-</html>
+@endpush

@@ -1,21 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Customer List</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap" type="text/javascript"></script>
-</head>
-
-<body>
+@extends('master')
+@section('title', 'Customer Index')
+@section('content')
     <div class="container">
         <h1>Customer List</h1>
-        <a href="{{route('customer.show',1)}}" type="button" class="btn btn-primary">All Customer In Map</a>
+        <a href="{{ route('customer.show', 1) }}" type="button" class="btn btn-primary my-2">All Customer In Map</a>
+        <a href="{{ route('customer.create') }}" type="button" class="btn btn-primary my-2">Create</a>
         <div class="">
             <table class="table">
                 <thead>
@@ -59,6 +48,8 @@
         </div>
 
     </div>
+@endsection
+@push('script')
     <script>
         let map;
 
@@ -78,21 +69,7 @@
                 draggable: true
             });
 
-        }
+        };
         initMap(23.80805140332605, 90.4175778591866);
     </script>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
-        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
-    </script>
-</body>
-
-</html>
-{{-- // var arr = window.myArray=@json($customers);
-//  var app = {{ Js::from($customers) }};
-//  console.log((app[2].latitude) ); --}}
+@endpush
